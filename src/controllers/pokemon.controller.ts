@@ -4,9 +4,6 @@ import fetch from 'node-fetch';
 const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=1118';
 
 export class PokemonsHandler {
-  static mockClear() {
-    throw new Error('Method not implemented.');
-  }
   pokemons: Pokemon[];
 
   constructor() {
