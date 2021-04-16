@@ -6,6 +6,7 @@ pokemon y encontrarlo con respectiva imagen.
 ## Common setup
 
 `git clone https://github.com/csmamani/challenge-ixpandit.git`
+
 `cd challenge-ixpandit`
 
 `npm install`
