@@ -5,9 +5,9 @@ pokemon y encontrarlo con respectiva imagen.
 
 ## Common setup
 
-`git clone https://github.com/csmamani/challenge-ixpandit.git`
+`git clone https://github.com/csmamani/pokemon-finder.git`
 
-`cd challenge-ixpandit`
+`cd pokemon-finder`
 
 `npm install`
 
