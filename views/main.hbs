@@ -1,0 +1,37 @@
+<div class="container">
+    <header class="header-container">
+      <h1 class="header-title">Pokemon finder</h1>
+      <p class="header-description">El que quiere Pokemons, que los busque.</p>
+    </header>
+    <main class="main-container">
+      <form class="form" id="form" enctype="application/x-www-form-urlencoded" method="POST" action="/">
+        <input
+          id="name"
+          type="text"
+          placeholder="Ingrese el nombre a buscar"
+          name="name"
+        />
+        <button id="search-button" type="submit">Buscar</button>
+      </form>
+      <h2 class="main-title">Resultados de la búsqueda</h2>
+
+      {{#if result}}
+        {{#each result}}
+        <div class="pokemon-card">
+            <div class="img-container">
+                <img src="{{this.front_default}}" alt="{{this.name}}" class="img">
+            </div>
+            <p class="pokemon-name">{{this.name}}</p>
+        </div>
+        {{/each}}
+      {{else if init}}
+      <div></div>
+      {{else}}
+      <p>No se encontraron pokemons con este nombre!</p>
+      {{/if}}
+    </main>
+    <footer class="footer-container">
+      <span>Hecho por Carolina Mamani</span>
+      <a href="http://github.io/csmamani">Link a mi repo</a>
+    </footer>
+</div>
