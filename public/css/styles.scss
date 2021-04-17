@@ -1,3 +1,5 @@
+$breakpoint-mobile: 450px;
+
 html {
   min-height: 100%;
   position: relative;
@@ -53,12 +55,27 @@ body {
         padding: 20px 50px;
         width: 100%;
 
+        @media (max-width: $breakpoint-mobile) {
+          flex-direction: column;
+          padding: 10px;
+        }
+
         .img-container {
           margin-right: 50px;
-          width: 200px;
+          width: 300px;
+
+          @media (max-width: $breakpoint-mobile) {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+          }
 
           .img {
             width: 100%;
+            @media (max-width: $breakpoint-mobile) {
+              width: 200px;
+            }
           }
         }
 
@@ -68,15 +85,31 @@ body {
           margin: auto;
           text-transform: capitalize;
           width: 100%;
+
+          @media (max-width: $breakpoint-mobile) {
+            text-align: center;
+          }
         }
       }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      height: 40px;
+      text-align: center;
     }
   }
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  height: 40px;
-  text-align: center;
+@media (max-width: $breakpoint-mobile) {
+  .pokemon-card {
+    .img-container {
+      .img {
+      }
+    }
+
+    .pokemon-name {
+    }
+  }
 }
