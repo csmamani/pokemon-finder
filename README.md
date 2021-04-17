@@ -3,6 +3,10 @@
 Pokemon finder es una aplicacion en la que podemos buscar el nombre de un
 pokemon y encontrarlo con respectiva imagen.
 
+## You can see the application runnning in
+
+https://pokemon-finder-cm.herokuapp.com/
+
 ## Common setup
 
 `git clone https://github.com/csmamani/pokemon-finder.git`
