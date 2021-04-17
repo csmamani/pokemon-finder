@@ -101,15 +101,3 @@ body {
     }
   }
 }
-
-@media (max-width: $breakpoint-mobile) {
-  .pokemon-card {
-    .img-container {
-      .img {
-      }
-    }
-
-    .pokemon-name {
-    }
-  }
-}
