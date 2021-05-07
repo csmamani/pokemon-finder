@@ -14,10 +14,10 @@ router.post('/', async (req, res) => {
   const { name } = req.body;
   pokemons.reset();
 
-  await pokemons.getPokemonData(name.toLowerCase()).then((data) => {
-    const result = pokemons.pokemons;
-    return res.render('main', { result });
-  });
+  await pokemons.getPokemonData(name.toLowerCase());
+  const result = pokemons.pokemons;
+
+  return res.render('main', { result });
 });
 
 module.exports = router;
