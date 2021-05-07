@@ -1,5 +1,6 @@
 import { Pokemon } from '../models/pokemon.model';
 import fetch from 'node-fetch';
+import { runInThisContext } from 'node:vm';
 
 const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=1118';
 
@@ -11,23 +12,19 @@ export class PokemonsHandler {
   }
 
   getPokemons = async (url: string) => {
-    return await fetch(url)
-      .then((res) => res.json())
-      .catch((err) => console.error(err));
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
   };
 
-  getPokemonUrl = async (name: string) => {
-    return await this.getPokemons(POKEAPI_URL)
-      .then(async (pokes) => {
-        const data = await pokes.results.filter((poke: any) =>
-          poke.name.includes(name)
-        );
-        const result = await data.map((poke: any) => poke.url);
-        return result;
-      })
-      .catch((err) => {
-        return err;
-      });
+  getPokemonsUrl = async (name: string) => {
+    const pokes = await this.getPokemons(POKEAPI_URL);
+    const data = await pokes.results.filter((poke: any) =>
+      poke.name.includes(name)
+    );
+    const result = data.map((poke: any) => poke.url);
+
+    return result;
   };
 
   savePokemon = (pokemon: any) => {
@@ -42,20 +39,21 @@ export class PokemonsHandler {
     if (!name) {
       return (this.pokemons = []);
     }
-    await this.getPokemonUrl(name).then(async (pokes: any) => {
-      for (let poke of pokes) {
-        const pokeData = await this.getPokemons(poke);
-        const { forms, sprites } = pokeData;
-        const { name } = forms[0];
-        const { front_default } = sprites;
 
-        const pokemon = {
-          name,
-          front_default,
-        };
+    const pokesUrl = await this.getPokemonsUrl(name);
 
-        this.savePokemon(pokemon);
-      }
-    });
+    for (let pokeUrl of pokesUrl) {
+      const pokeData = await this.getPokemons(pokeUrl);
+      const { forms, sprites } = pokeData;
+      const { name } = forms[0];
+      const { front_default } = sprites;
+
+      const pokemon = {
+        name,
+        front_default,
+      };
+
+      this.savePokemon(pokemon);
+    }
   };
 }
